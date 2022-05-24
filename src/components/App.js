@@ -1,38 +1,16 @@
-import './index.css';
+import '../index.css';
+
+import Header from './Header';
+import Main from './Main';
+import Footer from './Footer';
 
 function App() {
   return (
     <body>
       <div className="page">
-        <header className="header">
-          <a href="#">
-            <div className="header__logo"></div>
-          </a>
-        </header>
-        <main className="content">
-          <section className="profile">
-
-            <div className="profile__info">
-              <div className="profile__avatar"></div>
-              <div className="profile__info-name">
-                <h1 className="profile__name-title"></h1>
-                <p className="profile__info-description"></p>
-              </div>
-              <button className="profile__name-edit" type="button"></button>
-            </div>
-
-            <button className="profile__add-button" type="button"></button>
-
-          </section>
-
-          <section className="cards">
-          </section>
-
-        </main>
-
-        <footer className="footer">
-          <p className="footer__info"> &copy; 2022. Mesto Russia </p>
-        </footer>
+        <Header />
+        <Main />
+        <Footer />
         <div className="page__cover"></div>
       </div>
 
