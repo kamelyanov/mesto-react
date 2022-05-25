@@ -1,4 +1,4 @@
-.edit-form {
+.popup__container {
   font-family: Inter, Arial, sans-serif;
   margin: 0;
   position: fixed;
@@ -12,7 +12,7 @@
 }
 
 @media (max-width: 540px) {
-  .edit-form {
+  .popup__container {
     width: 282px;
   }
 }
