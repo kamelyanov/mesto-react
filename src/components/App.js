@@ -1,4 +1,5 @@
 import '../index.css';
+import React from 'react';
 
 import Header from './Header';
 import Main from './Main';
@@ -7,11 +8,37 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
 function App() {
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false)
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false)
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false)
+
+  function handleEditAvatarClick() {
+    setIsEditAvatarPopupOpen(true)
+  }
+
+  function handleEditProfileClick() {
+    setIsEditProfilePopupOpen(true)
+  }
+
+  function handleAddPlaceClick() {
+    setIsAddPlacePopupOpen(true)
+  }
+
+  function closeAllPopups() {
+    setIsEditAvatarPopupOpen(false)
+    setIsEditProfilePopupOpen(false)
+    setIsAddPlacePopupOpen(false)
+  }
+
   return (
     <body>
       <div className="page">
         <Header />
-        <Main />
+        <Main 
+        onEditProfile = {handleEditProfileClick}
+        onAddPlace = {handleAddPlaceClick}
+        onEditAvatar = {handleEditAvatarClick}
+        />
         <Footer />
         <div className="page__cover"></div>
       </div>
@@ -19,6 +46,9 @@ function App() {
       <PopupWithForm
         name='edit-form'
         title='Редактировать профиль'
+        onEditProfile=''
+        isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}
       >
         <label className="form__field">
           <input type="text" name="name" placeholder="Имя" className="popup__input edit-form__input_type_name"
@@ -36,6 +66,8 @@ function App() {
       <PopupWithForm
         name='add-card'
         title='Новое место'
+        isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}
       >
         <label className="form__field">
           <input type="text" name="name" placeholder="Название"
@@ -53,6 +85,8 @@ function App() {
       <PopupWithForm
         name='update-avatar'
         title='Обновить аватар'
+        isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}
       >
         <label className="form__field">
           <input type="url" name="avatar" placeholder="Ссылка на новый аватар"
