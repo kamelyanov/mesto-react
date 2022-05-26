@@ -37,18 +37,17 @@ function App() {
   }
 
   return (
-    <body>
-      <div className="page">
-        <Header />
-        <Main 
-        onEditProfile = {handleEditProfileClick}
-        onAddPlace = {handleAddPlaceClick}
-        onEditAvatar = {handleEditAvatarClick}
-        onCardClick = {onCardClick}
-        />
-        <Footer />
-        <div className="page__cover"></div>
-      </div>
+    <div className="page">
+      <Header />
+      <Main
+        onEditProfile={handleEditProfileClick}
+        onAddPlace={handleAddPlaceClick}
+        onEditAvatar={handleEditAvatarClick}
+        onCardClick={onCardClick}
+      />
+      <Footer />
+      <div className="page__cover"></div>
+
 
       <PopupWithForm
         name='edit-form'
@@ -59,12 +58,12 @@ function App() {
       >
         <label className="form__field">
           <input type="text" name="name" placeholder="Имя" className="popup__input edit-form__input_type_name"
-            minlength="2" maxlength="40" id="name-input" required />
+            minLength="2" maxLength="40" id="name-input" required />
           <span className="popup__input-error" id="name-input-error"> </span>
         </label>
         <label className="form__field">
           <input type="text" name="about" placeholder="Профессия"
-            className="popup__input edit-form__input_type_description" minlength="2" maxlength="200"
+            className="popup__input edit-form__input_type_description" minLength="2" maxLength="200"
             id="description-input" required />
           <span className="popup__input-error" id="description-input-error"> </span>
         </label>
@@ -78,7 +77,7 @@ function App() {
       >
         <label className="form__field">
           <input type="text" name="name" placeholder="Название"
-            className="popup__input add-card__input-type-namePhoto" minlength="2" maxlength="30" id="namePhoto"
+            className="popup__input add-card__input-type-namePhoto" minLength="2" maxLength="30" id="namePhoto"
             required />
           <span className="popup__input-error" id="namePhoto-error"> </span>
         </label>
@@ -112,7 +111,7 @@ function App() {
         onClose={closeAllPopups}
       />
 
-    </body> 
+    </div>
   );
 }
 
