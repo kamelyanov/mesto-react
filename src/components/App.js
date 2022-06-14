@@ -6,12 +6,26 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
+import { api } from '../utils/Api';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false)
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false)
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false)
   const [selectCard, setSelectCard] = React.useState(null)
+
+  const [currentUser, setCurrentUser] = React.useState({})
+  const [cards, setCards] = React.useState([]);
+
+  React.useEffect(() => {
+    Promise.all([api.getUserInfo(), api.getInitialCards()])
+      .then(([user, cards]) => {
+        setCurrentUser(user)
+        setCards(cards)
+      })
+      .catch((err) => console.log(err))    
+    }, [])
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true)
@@ -35,15 +49,18 @@ function App() {
   function onCardClick(card) {
     setSelectCard(card)
   }
-
+  
   return (
+    <CurrentUserContext.Provider value={currentUser}>
     <div className="page">
+      
       <Header />
       <Main
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
         onEditAvatar={handleEditAvatarClick}
         onCardClick={onCardClick}
+        cards={cards}
       />
       <Footer />
       <div className="page__cover"></div>
@@ -112,6 +129,8 @@ function App() {
       />
 
     </div>
+
+    </CurrentUserContext.Provider>
   );
 }
 

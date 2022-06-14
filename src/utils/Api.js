@@ -69,22 +69,15 @@ class Api {
     .then(this._checkResponse)
   }
 
-  like(id) {
+  changeLikeCardStatus(id, isLiked) {
     return fetch(`${this._baseUrl}/cards/likes/${id}`, {
-      method: 'PUT',
-      headers: this._headers 
+      method: `${isLiked ? 'PUT' : 'DELETE'}`,
+      headers: this._headers
     })
-    .then(this._checkResponse)
-  }
-
-  deleteLike(id) {
-    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
-      method: 'DELETE',
-      headers: this._headers 
-    })
-    .then(this._checkResponse)
+      .then(this._checkResponse)
   }
 }
+
 
 const api = new Api ({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-40',
