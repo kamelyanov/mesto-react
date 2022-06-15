@@ -10,7 +10,7 @@ function ImagePopup(props) {
 
         <p className="image-popup__title">
           {props.card ? props.card.name : ''}</p>
-       
+
         <button className="popup__button-glose image-popup__button-glose" type="button" onClick={props.onClose}></button>
       </div>
     </article>
