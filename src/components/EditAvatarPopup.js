@@ -11,7 +11,6 @@ function EditAvatarPopup (props) {
       avatar: avatarRef.current.value,
     });
   } 
-
   
   return (
     <PopupWithForm

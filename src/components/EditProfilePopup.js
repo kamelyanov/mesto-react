@@ -42,8 +42,8 @@ function EditProfilePopup (props) {
       <label className="form__field">
         <input type="text" name="name" placeholder="Имя" className="popup__input edit-form__input_type_name"
           minLength="2" maxLength="40" id="name-input" required 
+          value={name || ''}
           onChange={handleNameChange}
-          value={name}
           />
         <span className="popup__input-error" id="name-input-error"> </span>
       </label>
@@ -51,9 +51,9 @@ function EditProfilePopup (props) {
         <input type="text" name="about" placeholder="Профессия"
           className="popup__input edit-form__input_type_description" minLength="2" maxLength="200"
           id="description-input" required 
+          value={description || ''}
           onChange={handleDescriptionChange}
-          value={description}
-          />
+         />
         <span className="popup__input-error" id="description-input-error"> </span>
       </label>
     </PopupWithForm>
