@@ -5,6 +5,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
+import EditProfilePopup from './EditProfilePopup';
 import ImagePopup from './ImagePopup';
 import { api } from '../utils/Api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
@@ -21,8 +22,8 @@ function App() {
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([user, cards]) => {
-        setCurrentUser(user)
         setCards(cards)
+        setCurrentUser(user)
       })
       .catch((err) => console.log(err))    
     }, [])
@@ -49,6 +50,15 @@ function App() {
   function onCardClick(card) {
     setSelectCard(card)
   }
+
+  function handleUpdateUser(userData) {
+    api.setUserInfo(userData)
+    .then((data) => {
+      setCurrentUser(data)
+      closeAllPopups()
+    })
+    .catch((err) => console.log(err))
+  }
   
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -61,30 +71,16 @@ function App() {
         onEditAvatar={handleEditAvatarClick}
         onCardClick={onCardClick}
         cards={cards}
-      />
+       />
       <Footer />
       <div className="page__cover"></div>
 
 
-      <PopupWithForm
-        name='edit-form'
-        title='Редактировать профиль'
-        onEditProfile=''
-        isOpen={isEditProfilePopupOpen}
-        onClose={closeAllPopups}
-      >
-        <label className="form__field">
-          <input type="text" name="name" placeholder="Имя" className="popup__input edit-form__input_type_name"
-            minLength="2" maxLength="40" id="name-input" required />
-          <span className="popup__input-error" id="name-input-error"> </span>
-        </label>
-        <label className="form__field">
-          <input type="text" name="about" placeholder="Профессия"
-            className="popup__input edit-form__input_type_description" minLength="2" maxLength="200"
-            id="description-input" required />
-          <span className="popup__input-error" id="description-input-error"> </span>
-        </label>
-      </PopupWithForm>
+      <EditProfilePopup 
+      isOpen={isEditProfilePopupOpen} 
+      onClose={closeAllPopups} 
+      onUpdateUser={handleUpdateUser}
+      />
 
       <PopupWithForm
         name='add-card'
