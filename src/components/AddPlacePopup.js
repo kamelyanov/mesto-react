@@ -4,9 +4,9 @@ import PopupWithForm from "./PopupWithForm"
 function AddPlacePopup(props) {
   const [name, setName] = React.useState('')
   const [link, setLink] = React.useState('')
-
+  
   function handleNameChange(e) {
-    setName(e.target.value);
+    setName(e.target.value); 
   }
 
   function handleLinkChange(e) {
@@ -15,7 +15,6 @@ function AddPlacePopup(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-  
     props.onAddPlace({
       name: name,
       link: link,
@@ -40,6 +39,7 @@ function AddPlacePopup(props) {
             maxLength="30" 
             id="namePhoto"
             required 
+            value={name  || ''}
             onChange={handleNameChange}
             />
           <span className="popup__input-error" id="namePhoto-error"> </span>
@@ -52,6 +52,7 @@ function AddPlacePopup(props) {
             className="popup__input add-card__input-type-linkPhoto" 
             id="linkPhoto" 
             required 
+            value={link || ''}
             onChange={handleLinkChange}
             />
           <span className="popup__input-error" id="linkPhoto-error"> </span>

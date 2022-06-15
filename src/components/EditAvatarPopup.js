@@ -10,8 +10,9 @@ function EditAvatarPopup(props) {
     props.onUpdateAvatar({
       avatar: avatarRef.current.value,
     });
+    avatarRef.current.value = ''
   }
-
+  
   return (
     <PopupWithForm
       name='update-avatar'

@@ -1,4 +1,3 @@
-import '../index.css';
 import React from 'react';
 
 import Header from './Header';
@@ -124,7 +123,7 @@ function App() {
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           onAddPlace={handleAddPlaceSubmit}
-        />
+         />
 
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
